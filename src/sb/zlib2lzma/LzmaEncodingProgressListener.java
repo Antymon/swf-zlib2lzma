@@ -23,9 +23,9 @@ public class LzmaEncodingProgressListener implements ICodeProgress
 	
 	private void printProgress(float normalizedProgress)
 	{
-		float percentage = Math.round(1000f * normalizedProgress)/10f;
+		float percentage = 100f * normalizedProgress;
 		
-		System.out.println("Compressed: " + percentage + "%");
+		System.out.format("Compressed: %.2f%%%n", percentage);
 		
 		if(normalizedProgress == 1f)
 		{
