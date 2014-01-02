@@ -65,7 +65,7 @@ public class Zlib2LzmaConverter
 	 * SWF header and 4 bytes for scriptLen itself.
 	 * 
 	 * compressedLen does not include header (4+4+4 bytes) or lzma props (5
-	 * bytes) compressedLen does include LZMA end marker (6 bytes)
+	 * bytes) compressedLen does include LZMA end marker (6 bytes);
 	 */
 
 	private byte[] createLzmaCompressedSwf(final byte[] uncompressedSwfBytes)

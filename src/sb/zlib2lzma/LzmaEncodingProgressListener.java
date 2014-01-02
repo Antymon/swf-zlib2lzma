@@ -29,7 +29,7 @@ public class LzmaEncodingProgressListener implements ICodeProgress
 		
 		if(normalizedProgress == 1f)
 		{
-			System.out.println("Compression successfully completed :)");
+			System.out.println("Compression successfully completed! :)");
 		}
 	}
 }

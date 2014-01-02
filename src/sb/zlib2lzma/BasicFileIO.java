@@ -39,7 +39,6 @@ public class BasicFileIO
 		}
 		catch (IOException e)
 		{
-
 			e.printStackTrace();
 		}
 		catch (URISyntaxException e1)
