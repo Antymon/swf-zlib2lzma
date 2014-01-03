@@ -18,9 +18,16 @@ public class Zlib2LzmaConverter
 	private final char COMPRESSED_ZLIB = 'C';
 	private final char UNCOMPRESSED = 'F';
 
-	public Zlib2LzmaConverter(String inputPath, String outputPath)
-	{
+	private boolean verbose;
+	private String fileName;
+	
+	public Zlib2LzmaConverter(String inputPath, String outputPath, boolean verbose)
+	{	
+		this.verbose = verbose;
+		
 		BasicFileIO basicFileIO = new BasicFileIO();
+		
+		this.fileName = basicFileIO.getFileNameFromPath(inputPath);
 		
 		byte[] inputSwfBytes = basicFileIO.readFile(inputPath);
 		
@@ -85,7 +92,7 @@ public class Zlib2LzmaConverter
 
 		try
 		{
-			final LzmaEncodingProgressListener lzmaEncodingProgressListener = new LzmaEncodingProgressListener(uncompressedBodySize);
+			final LzmaEncodingProgressListener lzmaEncodingProgressListener = new LzmaEncodingProgressListener(uncompressedBodySize, fileName, verbose);
 			lzmaEncoder.Code(uncompressedBodyInputStream, lzmaBodyAndMarkerOutputStream, uncompressedBodySize, 0, lzmaEncodingProgressListener);
 			lzmaEncoder.WriteCoderProperties(lzmaPropsOutputStream);
 			lzmaEncodingProgressListener.setAsFinished();

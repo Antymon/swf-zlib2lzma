@@ -5,10 +5,16 @@ import SevenZip.ICodeProgress;
 public class LzmaEncodingProgressListener implements ICodeProgress
 {
 	long uncompressedBodySize;
+	boolean verbose;
+	String fileName;
+	
+	float normalizedCounter = 0.1f;
 
-	public LzmaEncodingProgressListener(long numberOfUncompressedBytes)
+	public LzmaEncodingProgressListener(long numberOfUncompressedBytes, String fileName, boolean verbose)
 	{
+		this.fileName = fileName;
 		this.uncompressedBodySize = numberOfUncompressedBytes;
+		this.verbose = verbose;
 	}
 	
 	public void SetProgress(long numberOfProcessedBytes, long currentCompressedSize) 
@@ -25,11 +31,14 @@ public class LzmaEncodingProgressListener implements ICodeProgress
 	{
 		float percentage = 100f * normalizedProgress;
 		
-		System.out.format("Compressed: %.2f%%%n", percentage);
+		if(verbose)
+		{
+			System.out.format(fileName + " compression progress: %.2f%%%n", percentage);
+		}
 		
 		if(normalizedProgress == 1f)
 		{
-			System.out.println("Compression successfully completed! :)");
+			System.out.println(fileName + " successfully compressed! :)");
 		}
 	}
 }

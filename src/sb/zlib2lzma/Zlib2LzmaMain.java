@@ -14,7 +14,9 @@ public class Zlib2LzmaMain
 
 		options.addOption("o", "output", true, "Output LZMA compressed swf file");
 		options.addOption("i", "input", true, "Input zlib compressed or uncompressed swf file");
-
+		options.addOption("v", "verbose", false, "Verbose mode. Shows progress of compression.");
+		
+		
 		CommandLineParser parser = new BasicParser();
 
 		try
@@ -23,7 +25,7 @@ public class Zlib2LzmaMain
 
 			if (isCLIInputValid(line))
 			{
-				new Zlib2LzmaConverter(line.getOptionValue("input"), line.getOptionValue("output"));
+				new Zlib2LzmaConverter(line.getOptionValue("input"), line.getOptionValue("output"), line.hasOption("verbose"));
 			}
 		}
 		catch (ParseException exp)
